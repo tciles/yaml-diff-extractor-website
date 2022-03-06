@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Throwable;
 
 /**
  * @Route("/{_locale}/",
@@ -50,9 +51,12 @@ class IndexAction extends AbstractController
                 $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
                 $response->deleteFileAfterSend(true);
                 return $response;
-            } catch (\Throwable $e) {
-                dd($e);
+            } catch (Throwable $e) {
                 $this->addFlash('error', $translator->trans('error.process'));
+                
+                return $this->redirectToRoute('app_index', [
+                    '_locale' => $request->getLocale()
+                ]);
             }
         }
 

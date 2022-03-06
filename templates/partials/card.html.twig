@@ -1,0 +1,9 @@
+<div class="card">
+    <div class="card-header">
+        {% block cardTitle %}{% endblock %}
+    </div>
+    <div class="card-body">
+        {% block cardBody %}{% endblock %}
+    </div>
+</div>
+<p class="mt-3"><span class="text-danger">*</span> {{ 'label.yaml_only'|trans }}</p>

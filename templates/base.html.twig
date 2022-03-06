@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.defaultLocale }}">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{{ 'website_title'|trans  }}{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% if app.flashes is not empty %}
+        <div class="container pt-3 pb-3">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block body %}{% endblock %}
+
+        <footer class="fixed-bottom">
+            <div class="nav navbar">
+                <div class="container">
+                    <p>
+                        {{ 'label.language'|trans }} :
+                        <a class="{% if app.request.locale == "fr" %} text-decoration-underline {% else %} text-decoration-none {% endif %}" href="{{ path('app_index', {_locale: 'fr'}) }}">fr</a> |
+                        <a class="{% if app.request.locale == "en" %} text-decoration-underline {% else %} text-decoration-none {% endif %}" href="{{ path('app_index', {_locale: 'en'}) }}">en</a>
+                    </p>
+                    <p class="text-center"><a class="text-decoration-none" href="https://thomas-ciles.fr/" target="_blank">Thomas CILES</a></p>
+                </div>
+            </div>
+        </footer>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>

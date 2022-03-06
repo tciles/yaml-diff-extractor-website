@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mb-5 mt-5">{{ 'website_title'|trans  }}</h1>
+
+        {{ form_start(form) }}
+
+        <div class="d-md-flex justify-content-around">
+            <div class="col-md-6 p-3">
+                {% embed 'partials/card.html.twig' %}
+                    {% block cardTitle %}<h2>{{  'label.sourceA'|trans }}</h2>{% endblock %}
+                    {% block cardBody %}{{ form_row(form.file_a) }}{% endblock %}
+                {% endembed %}
+            </div>
+
+            <div class="col-md-6 p-3">
+                {% embed 'partials/card.html.twig' %}
+                    {% block cardTitle %}<h2>{{  'label.sourceB'|trans }}</h2>{% endblock %}
+                    {% block cardBody %}{{ form_row(form.file_b) }}{% endblock %}
+                {% endembed %}
+            </div>
+        </div>
+
+        <div class="col-12 p-3 justify-content-center d-flex">
+            <button class="btn btn-primary" type="submit">{{ 'button.process'|trans }}</button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

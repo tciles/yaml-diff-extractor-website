@@ -1,0 +1,9 @@
+website_title: YAML Diff Extractor
+button:
+  process: Process extraction
+label:
+  sourceA: Source A
+  sourceB: Source B
+  yaml_only: Only YAML format is supported.
+error:
+  process: An error occurred, please try again later.

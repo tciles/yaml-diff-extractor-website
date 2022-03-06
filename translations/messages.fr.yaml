@@ -1,0 +1,10 @@
+website_title: YAML Diff Extractor
+button:
+  process: Procéder à l'extraction
+label:
+  sourceA: Source A
+  sourceB: Source B
+  yaml_only: Seul le format YAML est pris en charge.
+  language: 'Langue'
+error:
+  process: Une erreur c'est produite, veuillez rééssayer plus tard.

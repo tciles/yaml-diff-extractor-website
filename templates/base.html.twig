@@ -2,13 +2,13 @@
 <html lang="{{ app.request.defaultLocale }}">
     <head>
         <meta charset="UTF-8">
+        <meta name="description" content="{{ 'website_description'|trans }}">
         <title>{% block title %}{{ 'website_title'|trans  }}{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        {% if app.flashes is not empty %}
         <div class="container pt-3 pb-3">
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
@@ -21,7 +21,6 @@
                 </div>
             {% endfor %}
         </div>
-        {% endif %}
 
         {% block body %}{% endblock %}
 

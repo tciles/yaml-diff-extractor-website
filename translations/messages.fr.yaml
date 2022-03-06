@@ -1,4 +1,5 @@
 website_title: YAML Diff Extractor
+website_description: Compare et extrait le différence entre deux fichiers YAML.
 button:
   process: Procéder à l'extraction
 label:

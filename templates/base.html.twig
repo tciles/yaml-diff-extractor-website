@@ -2,6 +2,7 @@
 <html lang="{{ app.request.defaultLocale }}">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="{{ 'website_description'|trans }}">
         <title>{% block title %}{{ 'website_title'|trans  }}{% endblock %}</title>
         {% block stylesheets %}
@@ -9,30 +10,18 @@
         {% endblock %}
     </head>
     <body>
-        <div class="container pt-3 pb-3">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-            {% for message in app.flashes('error') %}
-                <div class="alert alert-danger">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
 
         {% block body %}{% endblock %}
 
         <footer class="fixed-bottom">
-            <div class="nav navbar">
-                <div class="container">
-                    <p>
+            <div class="nav navbar navbar-dark bg-light p-3 border-top">
+                <div class="container d-flex align-items-center">
+                    <p class="m-0">
                         {{ 'label.language'|trans }} :
                         <a class="{% if app.request.locale == "fr" %} text-decoration-underline {% else %} text-decoration-none {% endif %}" href="{{ path('app_index', {_locale: 'fr'}) }}">fr</a> |
                         <a class="{% if app.request.locale == "en" %} text-decoration-underline {% else %} text-decoration-none {% endif %}" href="{{ path('app_index', {_locale: 'en'}) }}">en</a>
                     </p>
-                    <p class="text-center"><a class="text-decoration-none" href="https://thomas-ciles.fr/" target="_blank">Thomas CILES</a></p>
+                    <p class="m-0 text-center"><a class="text-decoration-none" href="https://www.thomas-ciles.fr/" target="_blank">Thomas CILES</a></p>
                 </div>
             </div>
         </footer>

@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
+    <div class="container mb-5 pb-5">
         <h1 class="text-center mb-5 mt-5">{{ 'website_title'|trans  }}</h1>
         <p class="text-center">{{ 'website_description'|trans }}</p>
+        <p class="text-center text-black-50">{{ 'website_description2'|trans }}</p>
 
         {{ form_start(form) }}
 
@@ -28,5 +29,7 @@
         </div>
 
         {{ form_end(form) }}
+
+        {% include 'partials/flashes.html.twig' %}
     </div>
 {% endblock %}

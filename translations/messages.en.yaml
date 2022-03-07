@@ -1,5 +1,6 @@
 website_title: YAML Diff Extractor
 website_description: Compares and extracts the difference between two YAML files.
+website_description2: Files are deleted after processing or on error.
 button:
   process: Process extraction
 label:
@@ -8,3 +9,4 @@ label:
   yaml_only: Only YAML format is supported.
 error:
   process: An error occurred, please try again later.
+  parse: 'Parsing Error: %error%'

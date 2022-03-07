@@ -1,5 +1,6 @@
 website_title: YAML Diff Extractor
 website_description: Compare et extrait le différence entre deux fichiers YAML.
+website_description2: Les fichiers sont supprimés après le traitement ou lors d'une erreur.
 button:
   process: Procéder à l'extraction
 label:
@@ -9,3 +10,4 @@ label:
   language: 'Langue'
 error:
   process: Une erreur c'est produite, veuillez rééssayer plus tard.
+  parse: 'Erreur: %error%'

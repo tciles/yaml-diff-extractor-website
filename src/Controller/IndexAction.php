@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Throwable;
 
@@ -50,16 +51,25 @@ class IndexAction extends AbstractController
                 $file = $handler->extract($fileA->getPathname(), $fileB->getPathname());
                 $stream = new Stream($file->getPathname());
                 $response = new BinaryFileResponse($stream);
-                $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'diff.yaml');
+                $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
                 $response->deleteFileAfterSend(true);
 
+                unlink($fileA->getPathname());
+                unlink($fileB->getPathname());
+
                 return $response;
+            } catch (ParseException $parseException) {
+                $this->addFlash('error', $translator->trans('error.parse', ['%error%' => $parseException->getMessage()]));
             } catch (Throwable $e) {
                 $this->addFlash('error', $translator->trans('error.process'));
-                return $this->redirectToRoute('app_index', [
-                    '_locale' => $request->getLocale()
-                ]);
             }
+
+            unlink($fileA->getPathname());
+            unlink($fileB->getPathname());
+
+            return $this->redirectToRoute('app_index', [
+                '_locale' => $request->getLocale()
+            ]);
         }
 
         return $this->render('index.html.twig', [

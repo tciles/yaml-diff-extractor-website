@@ -1,0 +1,19 @@
+{% set flashes = app.flashes %}
+
+{% if flashes is not empty %}
+    <div class="container pt-3 pb-3">
+        {% for key, messages in flashes %}
+            {% set className = "alert-" ~ key %}
+
+            {% if key == "danger" or key == "error" %}
+                {% set className = "alert-danger" %}
+            {% endif %}
+
+            {% for message in  messages %}
+                <div class="alert {{ className }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
